@@ -125,3 +125,232 @@ Processing by PostsController#create as */*
 Completed 201 Created in 301ms (Views: 0.5ms | ActiveRecord: 290.3ms | Allocations: 5745)
 
 
+Started DELETE "/posts/6" for 127.0.0.1 at 2023-08-16 11:09:14 +0300
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#destroy as */*
+  Parameters: {"post"=>{"title"=>"Short", "content"=>"Some content", "category"=>"Non-Fiction"}, "id"=>"6"}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:42:in `set_post'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:35:in `destroy'
+  [1m[36mPost Destroy (0.3ms)[0m  [1m[31mDELETE FROM "posts" WHERE "posts"."id" = ?[0m  [["id", 6]]
+  ↳ app/controllers/posts_controller.rb:35:in `destroy'
+  [1m[36mTRANSACTION (212.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:35:in `destroy'
+Completed 204 No Content in 246ms (ActiveRecord: 213.6ms | Allocations: 26155)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:09:56 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Short", "content"=>"Some content", "category"=>"Non-Fiction"}}
+Completed 422 Unprocessable Entity in 9ms (Views: 7.1ms | ActiveRecord: 0.0ms | Allocations: 2780)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:11:25 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "likes"=>"abc", "category"=>"Fiction"}}
+Completed 422 Unprocessable Entity in 12ms (Views: 2.1ms | ActiveRecord: 1.2ms | Allocations: 5429)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:11:56 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "category"=>"Action"}}
+Completed 422 Unprocessable Entity in 2ms (Views: 0.9ms | ActiveRecord: 0.0ms | Allocations: 1678)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:12:44 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "category"=>"Action"}}
+Completed 422 Unprocessable Entity in 9ms (Views: 2.3ms | ActiveRecord: 0.8ms | Allocations: 6321)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:14:28 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"123", "content"=>"Some content", "category"=>"Non-Fiction"}}
+Completed 422 Unprocessable Entity in 14ms (Views: 3.3ms | ActiveRecord: 1.0ms | Allocations: 6479)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:15:22 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "slug"=>"introduction-to-ruby-on-rails", "category"=>"Fiction"}}
+Completed 422 Unprocessable Entity in 4ms (Views: 1.4ms | ActiveRecord: 0.0ms | Allocations: 2567)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:22:51 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some contentsssssss", "category"=>"Fiction", "views"=>10, "likes"=>20}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 500 Internal Server Error in 47ms (ActiveRecord: 0.7ms | Allocations: 9475)
+
+
+  
+NoMethodError (undefined method `custom_validation_method' for #<Post id: nil, title: "Title", content: "Some contentsssssss", views: 10, likes: 20, category: "Fiction", status: nil, slug: nil, published_at: nil, created_at: nil, updated_at: nil>
+Did you mean?  custom_validation):
+  
+app/controllers/posts_controller.rb:19:in `create'
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:23:21 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some contentsssssss", "category"=>"Fiction", "views"=>10, "likes"=>20}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 20ms (Views: 1.1ms | ActiveRecord: 1.7ms | Allocations: 7327)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:23:49 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some contentsssssss", "category"=>"Fiction", "views"=>10, "likes"=>20}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 16ms (Views: 0.8ms | ActiveRecord: 1.3ms | Allocations: 7072)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:25:09 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "category"=>"Fiction"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 10ms (Views: 1.4ms | ActiveRecord: 0.5ms | Allocations: 4126)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:29:21 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"", "content"=>"Some content", "category"=>"Fiction"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 21ms (Views: 10.9ms | ActiveRecord: 0.8ms | Allocations: 4450)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:30:17 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"", "content"=>"Some content", "category"=>"Fiction"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 30ms (Views: 11.8ms | ActiveRecord: 0.8ms | Allocations: 4371)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:33:53 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "password_confirmation"=>"[FILTERED]", "category"=>"Fiction"}}
+[31mUnpermitted parameter: :password_confirmation. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007f67ccab5460>, params: {"post"=>{"title"=>"Title", "content"=>"Some content", "password_confirmation"=>"[FILTERED]", "category"=>"Fiction"}, "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 13ms (Views: 5.8ms | ActiveRecord: 0.4ms | Allocations: 4217)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:36:17 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "category"=>"Fiction", "terms_of_service"=>false}}
+[31mUnpermitted parameter: :terms_of_service. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007f67cceefd28>, params: {"post"=>{"title"=>"Title", "content"=>"Some content", "category"=>"Fiction", "terms_of_service"=>false}, "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 16ms (Views: 2.6ms | ActiveRecord: 1.3ms | Allocations: 8280)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:37:23 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"Title", "content"=>"Some content", "category"=>"Fiction", "terms_of_service"=>false}}
+[31mUnpermitted parameter: :terms_of_service. Context: { controller: PostsController, action: create, request: #<ActionDispatch::Request:0x00007f67c04a4c08>, params: {"post"=>{"title"=>"Title", "content"=>"Some content", "category"=>"Fiction", "terms_of_service"=>false}, "controller"=>"posts", "action"=>"create"} }[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 16ms (Views: 7.1ms | ActiveRecord: 0.5ms | Allocations: 4203)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:45:21 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"", "content"=>"Some content", "category"=>"Fiction"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 24ms (Views: 2.3ms | ActiveRecord: 0.8ms | Allocations: 7980)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:47:16 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"My New Post", "content"=>"This is the content of my new post.", "views"=>0, "likes"=>0, "category"=>"Technology", "status"=>"Draft", "slug"=>"my-new-post", "published_at"=>nil}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (3.1ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" = ? LIMIT ?[0m  [["slug", "my-new-post"], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 17ms (Views: 2.2ms | ActiveRecord: 3.4ms | Allocations: 3192)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:49:10 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"My New Post", "content"=>"This is the content of my new post.", "views"=>0, "likes"=>1, "category"=>"Technology", "status"=>"Draft", "slug"=>"my-new-post", "published_at"=>nil}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (2.0ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" = ? LIMIT ?[0m  [["slug", "my-new-post"], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 17ms (Views: 1.5ms | ActiveRecord: 2.3ms | Allocations: 2778)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:49:20 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"My New Post", "content"=>"This is the content of my new post.", "views"=>3, "likes"=>1, "category"=>"Technology", "status"=>"Draft", "slug"=>"my-new-post", "published_at"=>nil}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" = ? LIMIT ?[0m  [["slug", "my-new-post"], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 422 Unprocessable Entity in 8ms (Views: 1.8ms | ActiveRecord: 0.3ms | Allocations: 2759)
+
+
+Started POST "/posts" for 127.0.0.1 at 2023-08-16 11:49:36 +0300
+Processing by PostsController#create as */*
+  Parameters: {"post"=>{"title"=>"My New Post", "content"=>"This is the content of my new post.", "views"=>3, "likes"=>1, "category"=>"Technology", "status"=>"Dra", "slug"=>"my-new-post", "published_at"=>nil}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "posts" WHERE "posts"."slug" = ? LIMIT ?[0m  [["slug", "my-new-post"], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mPost Create (0.7ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "views", "likes", "category", "status", "slug", "published_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["title", "My New Post"], ["content", "This is the content of my new post."], ["views", 3], ["likes", 1], ["category", "Technology"], ["status", "Dra"], ["slug", "my-new-post"], ["published_at", nil], ["created_at", "2023-08-16 08:49:36.444242"], ["updated_at", "2023-08-16 08:49:36.444242"]]
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+  [1m[36mTRANSACTION (257.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/posts_controller.rb:19:in `create'
+Completed 201 Created in 274ms (Views: 2.1ms | ActiveRecord: 258.3ms | Allocations: 3753)
+
+
