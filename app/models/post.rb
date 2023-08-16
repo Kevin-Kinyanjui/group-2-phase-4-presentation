@@ -2,8 +2,8 @@ class Post < ApplicationRecord
     # Presence validation: Ensures the title attribute is not blank.
     validates :title, presence: true
   
-    # # Length validation: Validates the length of the content attribute's value.
-    # validates :content, length: { minimum: 2, maximum: 5000, in: 6..2000, is: 6 }
+    # Length validation: Validates the length of the content attribute's value.
+    validates :content, length: { minimum: 20, maximum: 5000 }
   
     # # Numericality validation: Validates that the views attribute is a number.
     # validates :views, numericality: true
